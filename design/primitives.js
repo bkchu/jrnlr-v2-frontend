@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { space, layout, color, typography, flexbox } from 'styled-system';
 import { css } from '@styled-system/css';
 
-export const Box = styled.div(
+export const StyledBox = styled.div(
   {
-    minWidth: 0,
+    minWidth: 0
   },
   space,
   color,
@@ -48,7 +48,7 @@ export const StyledInput = styled.input`
 export const StyledForm = styled.form`
   label {
     ${css({
-      fontSize: [0, 1]
+      fontSize: [1, 2]
     })}
   }
 
