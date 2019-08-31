@@ -1,13 +1,8 @@
 import { StyledInput } from '../design';
 import PropTypes from 'prop-types';
+import { sentenceCase } from '../lib/utils/sentenceCase';
 
 export const Input = ({ name, type, ...props }) => {
-  const sentenceCase = name =>
-    name
-      .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-
   return (
     <label htmlFor={name}>
       {sentenceCase(name)}
@@ -24,4 +19,4 @@ Input.propTypes = {
 Input.defaultProps = {
   name: '',
   type: 'text'
-}
+};
