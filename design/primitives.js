@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { space, layout, color, typography, flexbox } from 'styled-system';
+import { space, layout, color, typography, flexbox, border } from 'styled-system';
 import { css } from '@styled-system/css';
 
 export const StyledBox = styled.div(
@@ -9,7 +9,8 @@ export const StyledBox = styled.div(
   space,
   color,
   layout,
-  flexbox
+  flexbox, 
+  border
 );
 
 export const Text = styled.p`
@@ -48,7 +49,8 @@ export const StyledInput = styled.input`
 export const StyledForm = styled.form`
   label {
     ${css({
-      fontSize: [1, 2]
+      fontSize: [1, 2],
+      fontWeight: 6
     })}
   }
 
@@ -80,13 +82,14 @@ export const StyledButton = styled.button`
     width: ['100%'],
     border: 1,
     borderColor: 'grays.1',
-    fontSize: [1, 2]
+    fontSize: [1, 2],
+    backgroundColor: 'white'
   })}
 
   outline: 0;
   border-radius: 3px;
   transition: all 200ms;
-
+  
   &:focus {
     ${css({
       backgroundColor: 'green',

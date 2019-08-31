@@ -30,7 +30,7 @@ export default function register() {
           type="password"
           required
         />
-        <Box display="flex" justifyContent="flex-end">
+        <Box display="flex" justifyContent="flex-end" pt="4">
           <Button width={['100%', null, 1 / 2]}>Register</Button>
         </Box>
       </Form>

@@ -50,7 +50,7 @@ export const theme = {
   fonts: {
     sans: `Inter, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif`,
     serif: `Merriweather, Georgia, "Times New Roman", Times, serif`,
-    code: `Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace`
+    code: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`
   },
   borders: [0, '1px solid'],
   radii: [0, 2, 4, 16, 9999, '100%'],
@@ -86,7 +86,7 @@ export const theme = {
       'rgba(0,0,0,.8)',
       'rgba(0,0,0,.9)'
     ],
-    white: [
+    whites: [
       'rgba(255,255,255,.0125)',
       'rgba(255,255,255,.025)',
       'rgba(255,255,255,.05)',
