@@ -2,12 +2,18 @@ import { useState } from 'react';
 import { Box, Button, Form, Input } from '../components';
 
 export default function register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [inputs, setInputs] = useState({});
+  console.log(inputs);
+
+  const onChange = e => {
+    setInputs({
+      ...inputs,
+      [e.target.name.replace(' ', '')]: e.target.value
+    });
+  };
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(email, password);
   };
 
   return (
@@ -15,18 +21,32 @@ export default function register() {
       {/* <AllPosts></AllPosts> */}
       <Form onSubmit={onSubmit}>
         <Input
-          name="Email"
+          name="full name"
+          placeholder="Full Name"
+          value={inputs.fullname}
+          onChange={onChange}
+          required
+        />
+        <Input
+          name="email"
           placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          value={inputs.email}
+          onChange={onChange}
           type="email"
           required
         />
         <Input
-          name="Password"
+          name="username"
+          placeholder="Username"
+          value={inputs.username}
+          onChange={onChange}
+          required
+        />
+        <Input
+          name="password"
           placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
+          value={inputs.password}
+          onChange={onChange}
           type="password"
           required
         />

@@ -89,6 +89,7 @@ export const StyledButton = styled.button`
   outline: 0;
   border-radius: 3px;
   transition: all 200ms;
+  cursor: pointer;
   
   &:focus {
     ${css({
