@@ -42,7 +42,7 @@ export const SignUp = () => {
   const onChange = e => {
     setInputs({
       ...inputs,
-      [e.target.name]: e.target.value
+      [e.target.name.replace(' ', '')]: e.target.value
     });
   };
 
