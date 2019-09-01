@@ -1,17 +1,18 @@
-import React from 'react';
-import Link from 'next/link';
-import styled from 'styled-components';
-import css from '@styled-system/css';
 import { Box } from './Box';
-import { Me } from './Query/Me';
-import { Logout } from './Mutation/Logout';
 import { Button } from './Button';
+import Link from 'next/link';
+import { Logout } from './Mutation/Logout';
+import { Me } from './Query/Me';
+import React from 'react';
 import Router from 'next/router';
+import css from '@styled-system/css';
+import styled from 'styled-components';
 
 const StyledList = styled.ul`
   list-style: none;
   margin: 0;
   display: flex;
+  align-items: center;
   padding: 0;
   width: auto;
 
@@ -45,10 +46,21 @@ const Nav = () => (
           {({ data }) => {
             return !!data && !!data.me ? (
               <>
-                <li>Welcome, {data.me.name.split(' ')[0]}!</li>
+                <li>
+                  <Link href="/profile">
+                    <a>Profile</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/new-post">
+                    <a>New Post</a>
+                  </Link>
+                </li>
                 <Logout>
                   {([logout]) => (
                     <Button
+                      p="2"
+                      width="auto"
                       onClick={() => {
                         logout();
                         Router.push('/login');
@@ -69,6 +81,11 @@ const Nav = () => (
                 <li>
                   <Link href="/register">
                     <a>Register</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/new-post">
+                    <a>New Post</a>
                   </Link>
                 </li>
               </>

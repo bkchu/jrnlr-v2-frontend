@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import { space, layout, color, typography, flexbox, border } from 'styled-system';
+import { border, color, flexbox, layout, space, typography } from 'styled-system';
+
 import { css } from '@styled-system/css';
+import styled from 'styled-components';
 
 export const StyledBox = styled.div(
   {

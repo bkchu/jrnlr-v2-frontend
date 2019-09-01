@@ -1,10 +1,10 @@
-import { Box, Button, Form, Input } from '../../components';
+import { Box, Button, Form, Input } from '../components';
 
-import ErrorMessage from '../ErrorMessage';
-import { ME_QUERY } from '../Query/Me';
+import ErrorMessage from '../components/ErrorMessage';
+import { ME_QUERY } from '../components/Query/Me';
 import Router from 'next/router';
 import gql from 'graphql-tag';
-import { sentenceCase } from '../../lib/utils/sentenceCase';
+import { sentenceCase } from '../lib/utils/sentenceCase';
 import { useMutation } from '@apollo/react-hooks';
 import { useState } from 'react';
 
@@ -28,17 +28,16 @@ export const SIGNUP_MUTATION = gql`
   }
 `;
 
-export const SignUp = () => {
+export default function NewPost() {
   const [signup, { loading, error, data }] = useMutation(SIGNUP_MUTATION, {
     refetchQueries: [{ query: ME_QUERY }]
   });
-  
+
   const [inputs, setInputs] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    username: '',
-    password: ''
+    title: '',
+    subtitle: '',
+    imgurl: '',
+    content: ''
   });
 
   const onChange = e => {
@@ -50,23 +49,17 @@ export const SignUp = () => {
 
   const clearFields = () => {
     setInputs({
-      firstname: '',
-      lastname: '',
-      email: '',
-      username: '',
-      password: ''
+      title: '',
+      subtitle: '',
+      imgurl: '',
+      content: ''
     });
   };
 
   const onSubmit = async e => {
     e.preventDefault();
     await signup({
-      variables: {
-        fullname: sentenceCase(`${inputs.firstname} ${inputs.lastname}`),
-        email: inputs.email,
-        username: inputs.username,
-        password: inputs.password
-      }
+      variables: inputs
     });
     clearFields();
     Router.push('/');
@@ -77,48 +70,39 @@ export const SignUp = () => {
       <ErrorMessage error={error}></ErrorMessage>
       <Form disabled={loading} onSubmit={onSubmit}>
         <Input
-          name="first name"
-          placeholder="First Name"
-          value={inputs.firstname}
+          name="title"
+          placeholder="Title"
+          value={inputs.title}
           onChange={onChange}
           required
         />
         <Input
-          name="last name"
-          placeholder="Last Name"
+          name="subtitle"
+          placeholder="Subtitle"
           value={inputs.lastname}
           onChange={onChange}
-          required
         />
         <Input
-          name="email"
-          placeholder="Email"
-          value={inputs.email}
-          onChange={onChange}
-          type="email"
-          required
-        />
-        <Input
-          name="username"
-          placeholder="Username"
+          name="imgurl"
+          placeholder="Image URL"
           value={inputs.username}
           onChange={onChange}
           required
         />
         <Input
-          name="password"
-          placeholder="Password"
-          value={inputs.password}
+          name="content"
+          placeholder="Write your feels..."
+          value={inputs.content}
           onChange={onChange}
-          type="password"
+          type="email"
           required
         />
         <Box display="flex" justifyContent="flex-end" pt="4">
           <Button width={['100%', null, 1 / 2]}>
-            Register{loading ? 'ing...' : ''}
+            Create{loading ? 'ing...' : ''} Post
           </Button>
         </Box>
       </Form>
     </Box>
   );
-};
+}
