@@ -5,7 +5,7 @@ import { Box, Button, Form, Input } from '../../components';
 import { sentenceCase } from '../../lib/utils/sentenceCase';
 import ErrorMessage from '../ErrorMessage';
 import { ME_QUERY } from '../Query/Me';
-import { Router } from 'next/router';
+import Router from 'next/router';
 
 export const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -31,6 +31,7 @@ export const SignUp = () => {
   const [signup, { loading, error, data }] = useMutation(SIGNUP_MUTATION, {
     refetchQueries: [{ query: ME_QUERY }]
   });
+  
   const [inputs, setInputs] = useState({
     firstname: '',
     lastname: '',
