@@ -1,4 +1,4 @@
-export * from './AllPosts';
+export * from './Query/AllPosts';
 export * from './ErrorMessage';
 export * from './Meta';
 export * from './Nav';

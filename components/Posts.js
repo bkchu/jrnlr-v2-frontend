@@ -1,31 +1,9 @@
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
-import ErrorMessage from '../components/ErrorMessage';
-import { Text, Image } from '../design';
-import { Box } from './Box';
-export const GET_ALL_POSTS_QUERY = gql`
-  query GET_ALL_POSTS_QUERY {
-    allPosts {
-      id
-      title
-      subtitle
-      author {
-        name
-        username
-      }
-      imgurl
-      content
-    }
-  }
-`;
+import { Image, Text } from '../design';
 
-export const AllPosts = () => {
-  const { loading, error, data } = useQuery(GET_ALL_POSTS_QUERY);
-  if (loading) return <p>Loading ...</p>;
-  if (error) {
-    return <ErrorMessage error={error}></ErrorMessage>;
-  }
-  const listOfTitle = data.allPosts.map(post => (
+import { Box } from './Box';
+
+const Posts = ({ posts }) =>
+  posts.map(post => (
     <Box key={post.id} maxWidth="75rem" mt="5" mb="7" mx="auto">
       <Image src={post.imgurl} alt="" mb="3" />
       <Text
@@ -54,5 +32,5 @@ export const AllPosts = () => {
       </Text>
     </Box>
   ));
-  return listOfTitle;
-};
+
+export { Posts };

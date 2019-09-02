@@ -12,7 +12,9 @@ const ME_QUERY = gql`
 `;
 
 export const Me = props => {
-  const { loading, error, data } = useQuery(ME_QUERY);
+  const { loading, error, data } = useQuery(ME_QUERY, {
+    fetchPolicy: 'cache-and-network'
+  });
   return props.children({ loading, error, data });
 };
 

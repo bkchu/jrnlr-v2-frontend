@@ -1,36 +1,36 @@
-import { Box, Button, Form, Input } from '../components';
+import { Box, Button, Form, GET_ALL_POSTS_QUERY, Input } from '../components';
 
 import ErrorMessage from '../components/ErrorMessage';
-import { ME_QUERY } from '../components/Query/Me';
 import Router from 'next/router';
 import gql from 'graphql-tag';
-import { sentenceCase } from '../lib/utils/sentenceCase';
 import { useMutation } from '@apollo/react-hooks';
 import { useState } from 'react';
 
-export const SIGNUP_MUTATION = gql`
-  mutation SIGNUP_MUTATION(
-    $fullname: String!
-    $username: String!
-    $email: String!
-    $password: String!
+export const PUBLISH_POST_MUTATION = gql`
+  mutation PUBLISH_POST_MUTATION(
+    $title: String!
+    $subtitle: String
+    $content: String!
+    $imgurl: String
   ) {
-    signup(
-      name: $fullname
-      username: $username
-      email: $email
-      password: $password
+    publishPost(
+      title: $title
+      subtitle: $subtitle
+      content: $content
+      imgurl: $imgurl
     ) {
       id
-      name
-      username
+      title
+      subtitle
+      content
+      imgurl
     }
   }
 `;
 
-export default function NewPost() {
-  const [signup, { loading, error, data }] = useMutation(SIGNUP_MUTATION, {
-    refetchQueries: [{ query: ME_QUERY }]
+export default function Publish() {
+  const [publishPost, { loading, error, data }] = useMutation(PUBLISH_POST_MUTATION, {
+    refetchQueries: [{ query: GET_ALL_POSTS_QUERY }]
   });
 
   const [inputs, setInputs] = useState({
@@ -58,7 +58,7 @@ export default function NewPost() {
 
   const onSubmit = async e => {
     e.preventDefault();
-    await signup({
+    await publishPost({
       variables: inputs
     });
     clearFields();
@@ -94,12 +94,11 @@ export default function NewPost() {
           placeholder="Write your feels..."
           value={inputs.content}
           onChange={onChange}
-          type="email"
           required
         />
         <Box display="flex" justifyContent="flex-end" pt="4">
           <Button width={['100%', null, 1 / 2]}>
-            Create{loading ? 'ing...' : ''} Post
+            Publish{loading ? 'ing...' : ''} Post
           </Button>
         </Box>
       </Form>

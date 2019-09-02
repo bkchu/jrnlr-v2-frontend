@@ -31,7 +31,6 @@ const LogIn = () => {
       ...inputs,
       [e.target.name.replace(' ', '')]: e.target.value
     });
-    console.log(inputs);
   };
 
   const clearFields = () => {
