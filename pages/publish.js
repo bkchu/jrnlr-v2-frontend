@@ -87,7 +87,6 @@ export default function Publish() {
           placeholder="Image URL"
           value={inputs.username}
           onChange={onChange}
-          required
         />
         <Input
           name="content"

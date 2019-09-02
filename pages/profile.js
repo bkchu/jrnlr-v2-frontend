@@ -19,7 +19,9 @@ const POSTS_QUERY = gql`
 `;
 
 const ProfilePosts = () => {
-  const { data, error, loading } = useQuery(POSTS_QUERY);
+  const { data, error, loading } = useQuery(POSTS_QUERY, {
+    fetchPolicy: 'cache-and-network'
+  });
   if (loading) return <p>Loading ...</p>;
   if (error) {
     return <ErrorMessage error={error}></ErrorMessage>;

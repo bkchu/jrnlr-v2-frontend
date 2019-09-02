@@ -15,6 +15,7 @@ export const GET_ALL_POSTS_QUERY = gql`
       }
       imgurl
       content
+      createdAt
     }
   }
 `;
