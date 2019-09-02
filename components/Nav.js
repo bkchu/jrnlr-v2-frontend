@@ -105,7 +105,6 @@ const Nav = () => (
                   </li>
                 </>
               )}
-
               {loading && <Loader />}
             </StyledList>
           </Box>
