@@ -7,6 +7,7 @@ import { Me } from './Query/Me';
 import NProgress from 'nprogress';
 import React from 'react';
 import Router from 'next/router';
+import { Text } from '../design';
 import css from '@styled-system/css';
 import styled from 'styled-components';
 
@@ -56,7 +57,16 @@ const Nav = () => (
             <StyledList>
               <li>
                 <Link href="/">
-                  <a>Jrnlr</a>
+                  <a>
+                    <Text
+                      fontWeight="6"
+                      fontSize="4"
+                      textTransform="uppercase"
+                      letterSpacing="tracked"
+                    >
+                      Jrnlr
+                    </Text>
+                  </a>
                 </Link>
               </li>
             </StyledList>

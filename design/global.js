@@ -389,4 +389,10 @@ export const GlobalStyle = createGlobalStyle`
       color: 'grays.2'
     })}
   }
+
+  ::selection {
+    ${css({
+      backgroundColor: 'lightgreen'
+    })}
+  }
 `;

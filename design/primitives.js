@@ -22,6 +22,7 @@ export const StyledBox = styled.div(
 );
 
 export const Text = styled.p`
+  text-transform: ${props => props.textTransform};
   margin: 0;
   ${css({ lineHeight: 'copy', fontFamily: 'sans' })}
   ${color}

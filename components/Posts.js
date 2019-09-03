@@ -1,7 +1,9 @@
 import { Image, Text } from '../design';
 
 import { Box } from './Box';
+import Link from 'next/link';
 import moment from 'moment';
+import slug from 'slug';
 import { snippet } from '../lib/utils/sentenceSnippet';
 
 const Posts = ({ posts }) => {
@@ -17,15 +19,17 @@ const Posts = ({ posts }) => {
         flexDirection={['column-reverse', null, 'row']}
       >
         <Box mr={[0, null, 3]} flex={[null, null, 1]}>
-          <Text
-            color="grays.1"
-            fontSize={[5, 6]}
-            fontWeight="6"
-            lineHeight="title"
-            mb="2"
-          >
-            {post.title}
-          </Text>
+          <LinkToPost post={post}>
+            <Text
+              color="grays.1"
+              fontSize={[5, 6]}
+              fontWeight="6"
+              lineHeight="title"
+              mb="2"
+            >
+              {post.title}
+            </Text>
+          </LinkToPost>
           <Text color="grays.1" fontSize={[3, 4]} fontWeight="2" mb="2">
             {post.subtitle || snippet(post.content)}
           </Text>
@@ -34,23 +38,34 @@ const Posts = ({ posts }) => {
           </Text>
         </Box>
         {post.imgurl && (
-          <Box width={['100%', null, 6]} height={['100%', null, "6"]}>
-            <Image src={post.imgurl} alt="" />
-          </Box>
+          <LinkToPost post={post}>
+            <Box
+              width={['100%', null, 6]}
+              height={['100%', null, '6']}
+              mb={[2, 0]}
+            >
+              <Image src={post.imgurl} alt="" />
+            </Box>
+          </LinkToPost>
         )}
-        {/* <Text
-        fontFamily="sans"
-        color="grays.1"
-        fontSize={[1, 2]}
-        fontWeight="4"
-        my={4}
-      >
-        {post.content}
-      </Text> */}
       </Box>
     ))
   ) : (
     <p>This user has no posts.</p>
   );
 };
+
+const LinkToPost = ({ post, children, ...props }) => (
+  <Link
+    href={{
+      pathname: `/post`,
+      query: { id: post.id }
+    }}
+    as={`/post/${slug(post.title).toLowerCase()}`}
+    {...props}
+  >
+    {children}
+  </Link>
+);
+
 export { Posts };

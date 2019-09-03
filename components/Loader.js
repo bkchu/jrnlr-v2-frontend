@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+import { Box } from './Box';
 import css from '@styled-system/css';
 
 const BounceAnimation = keyframes`
@@ -23,17 +24,19 @@ const Dot = styled.div`
   height: 6px;
   margin: 0 3px;
   /* Animation */
-  animation: ${BounceAnimation} .7s linear infinite;
+  animation: ${BounceAnimation} 0.7s linear infinite;
   animation-delay: ${props => props.delay};
 `;
 class Loader extends Component {
   render() {
     return (
-      <DotWrapper>
-        <Dot delay="0s" />
-        <Dot delay=".17s" />
-        <Dot delay=".34s" />
-      </DotWrapper>
+      <Box width='100%' height='75vh' display='flex' justifyContent='center' alignItems='center'>
+        <DotWrapper>
+          <Dot delay="0s" />
+          <Dot delay=".17s" />
+          <Dot delay=".34s" />
+        </DotWrapper>
+      </Box>
     );
   }
 }
