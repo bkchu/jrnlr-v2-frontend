@@ -1,4 +1,5 @@
 import ErrorMessage from '../ErrorMessage';
+import { Loader } from '../Loader';
 import { Posts } from '../Posts';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
@@ -22,7 +23,7 @@ export const GET_ALL_POSTS_QUERY = gql`
 
 export const AllPosts = () => {
   const { loading, error, data } = useQuery(GET_ALL_POSTS_QUERY);
-  if (loading) return <p>Loading ...</p>;
+  if (loading) return <Loader />;
   if (error) {
     return <ErrorMessage error={error}></ErrorMessage>;
   }

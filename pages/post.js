@@ -21,8 +21,8 @@ function Post() {
   if (loading) return <Loader />;
   if (error) return <ErrorMessage error={error} />;
   return (
-    <Box key={post.id} maxWidth="75rem" mt="5" mb="7" mx="auto">
-      <Image src={post.imgurl} alt="" mb="3" />
+    <Box key={post.id} maxWidth="75rem" mt={[2, 3]} mb="7" mx="auto">
+      {post.imgurl && <Image src={post.imgurl} alt="" mb="1" />}
       <Text
         color="grays.1"
         fontSize={[5, 6]}
@@ -41,7 +41,7 @@ function Post() {
       <Text
         fontFamily="sans"
         color="grays.1"
-        fontSize={[1, 2]}
+        fontSize={[2, 3]}
         fontWeight="4"
         my={4}
       >

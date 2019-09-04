@@ -12,7 +12,7 @@ const Posts = ({ posts }) => {
       <Box
         key={post.id}
         maxWidth="8"
-        mt="5"
+        mt={[2, 3]}
         mb="5"
         display="flex"
         justifyContent="space-between"
@@ -64,7 +64,7 @@ const LinkToPost = ({ post, children, ...props }) => (
     as={`/post/${slug(post.title).toLowerCase()}`}
     {...props}
   >
-    {children}
+    <a>{children}</a>
   </Link>
 );
 

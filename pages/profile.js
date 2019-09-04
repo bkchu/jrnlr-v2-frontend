@@ -1,3 +1,4 @@
+import { Loader } from '../components/Loader';
 import { Posts } from '../components/Posts';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
@@ -20,9 +21,10 @@ const POSTS_QUERY = gql`
 
 const ProfilePosts = () => {
   const { data, error, loading } = useQuery(POSTS_QUERY, {
-    fetchPolicy: 'cache-and-network'
+    fetchPolicy: 'cache-and-network',
+    notifyOnNetworkStatusChange: true
   });
-  if (loading) return <p>Loading ...</p>;
+  if (loading) return <Loader />;
   if (error) {
     return <ErrorMessage error={error}></ErrorMessage>;
   }

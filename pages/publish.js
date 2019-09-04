@@ -29,9 +29,12 @@ export const PUBLISH_POST_MUTATION = gql`
 `;
 
 export default function Publish() {
-  const [publishPost, { loading, error, data }] = useMutation(PUBLISH_POST_MUTATION, {
-    refetchQueries: [{ query: GET_ALL_POSTS_QUERY }]
-  });
+  const [publishPost, { loading, error, data }] = useMutation(
+    PUBLISH_POST_MUTATION,
+    {
+      refetchQueries: [{ query: GET_ALL_POSTS_QUERY }]
+    }
+  );
 
   const [inputs, setInputs] = useState({
     title: '',
@@ -97,7 +100,7 @@ export default function Publish() {
         />
         <Box display="flex" justifyContent="flex-end" pt="4">
           <Button width={['100%', null, 1 / 2]}>
-            Publish{loading ? 'ing...' : ''} Post
+            {loading ? 'Publishing Post...' : 'Publish Post'}
           </Button>
         </Box>
       </Form>

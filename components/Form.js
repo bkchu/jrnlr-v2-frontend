@@ -4,7 +4,9 @@ import { StyledForm } from '../design';
 export const Form = ({ action, children, disabled, ...props }) => {
   return (
     <StyledForm action={action} {...props}>
-      <fieldset disabled={disabled} aria-busy={disabled}>{children}</fieldset>
+      <fieldset disabled={disabled} aria-busy={disabled}>
+        {children}
+      </fieldset>
     </StyledForm>
   );
 };

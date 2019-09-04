@@ -13,7 +13,8 @@ const ME_QUERY = gql`
 
 export const Me = props => {
   const { loading, error, data } = useQuery(ME_QUERY, {
-    fetchPolicy: 'cache-and-network'
+    fetchPolicy: 'network-only',
+    notifyOnNetworkStatusChange: true
   });
   return props.children({ loading, error, data });
 };

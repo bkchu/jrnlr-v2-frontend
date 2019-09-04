@@ -48,7 +48,7 @@ const LogIn = () => {
   };
 
   return (
-    <Box width={['100%', null, 1 / 2]} mx="auto" textAlign="right">
+    <Box width={['100%', null, 1 / 2]} mx="auto" mt="2" textAlign="right">
       <ErrorMessage error={error}></ErrorMessage>
       <Form disabled={loading} onSubmit={onSubmit}>
         <Input

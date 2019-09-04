@@ -35,7 +35,9 @@ const StyledList = styled.ul`
   })}
 
   li {
-    margin-right: 2rem;
+    ${css({
+      marginRight: [2, 3]
+    })}
 
     &:last-of-type {
       margin-right: 0;
@@ -49,7 +51,7 @@ const Nav = () => (
       return (
         <Box width="100%" bg="grays.0">
           <Box
-            p="3"
+            p={[2, 3]}
             display="flex"
             justifyContent="space-between"
             alignItems="center"

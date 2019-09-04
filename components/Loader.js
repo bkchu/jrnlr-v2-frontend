@@ -30,7 +30,7 @@ const Dot = styled.div`
 class Loader extends Component {
   render() {
     return (
-      <Box width='100%' height='75vh' display='flex' justifyContent='center' alignItems='center'>
+      <Box width='100%' height='auto' display='flex' justifyContent='center' alignItems='center'>
         <DotWrapper>
           <Dot delay="0s" />
           <Dot delay=".17s" />
