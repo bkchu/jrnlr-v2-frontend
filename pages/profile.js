@@ -2,21 +2,16 @@ import { Loader } from '../components/Loader';
 import { Posts } from '../components/Posts';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
+import ErrorMessage from '../components/ErrorMessage';
+import { POST_FRAGMENT } from '../components/Fragment/Post';
 
 const POSTS_QUERY = gql`
   query POSTS_QUERY {
     posts {
-      id
-      title
-      subtitle
-      author {
-        name
-        username
-      }
-      imgurl
-      content
+      ...POST_FRAGMENT
     }
   }
+  ${POST_FRAGMENT}
 `;
 
 const ProfilePosts = () => {

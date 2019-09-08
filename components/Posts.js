@@ -1,68 +1,102 @@
-import { Image, Text } from '../design';
-
-import { Box } from './Box';
-import Link from 'next/link';
+import { useQuery } from '@apollo/react-hooks';
 import moment from 'moment';
+import Link from 'next/link';
 import slug from 'slug';
+import { Image, Text } from '../design';
 import { snippet } from '../lib/utils/sentenceSnippet';
+import { Box } from './Box';
+import { Button } from './Button';
+import ErrorMessage from './ErrorMessage';
+import { Loader } from './Loader';
+import { ME_QUERY } from './Query/Me';
 
 const Posts = ({ posts }) => {
+  const { data, error, loading } = useQuery(ME_QUERY);
   return posts.length ? (
-    posts.map(post => (
-      <Box
-        key={post.id}
-        maxWidth="8"
-        mt={[2, 3]}
-        mb="5"
-        display="flex"
-        justifyContent="space-between"
-        flexDirection={['column-reverse', null, 'row']}
-      >
-        <Box mr={[0, null, 3]} flex={[null, null, 1]}>
-          <LinkToPost post={post}>
-            <Text
-              color="grays.1"
-              fontSize={[5, 6]}
-              fontWeight="6"
-              lineHeight="title"
-              mb="2"
+    posts.map(post => {
+      if (loading) return <Loader />;
+      if (error) return <ErrorMessage error={error} />;
+
+      const isMe = data && data.me && data.me.id === post.author.id;
+
+      return (
+        <Box
+          key={post.id}
+          maxWidth="8"
+          mt={[2, 3]}
+          mb="5"
+          display="flex"
+          justifyContent="space-between"
+          flexDirection={['column-reverse', null, 'row']}
+          position="relative"
+        >
+          {isMe && (
+            <Link
+              href={{
+                pathname: `/post/${slug(post.title).toLowerCase()}/edit`,
+                query: { id: post.id }
+              }}
             >
-              {post.title}
+              <Button
+                secondary={true}
+                width="auto"
+                position="absolute"
+                right="1rem"
+                top="1rem"
+              >
+                Edit
+              </Button>
+            </Link>
+          )}
+          <Box mr={[0, null, 3]} flex={[null, null, 1]}>
+            <LinkToPost post={post}>
+              <Text
+                color="grays.1"
+                fontSize={[5, 6]}
+                fontWeight="6"
+                lineHeight="title"
+                mb="2"
+              >
+                {post.title}
+              </Text>
+            </LinkToPost>
+            <Text color="grays.1" fontSize={[3, 4]} fontWeight="2" mb="2">
+              {post.subtitle || snippet(post.content)}
             </Text>
-          </LinkToPost>
-          <Text color="grays.1" fontSize={[3, 4]} fontWeight="2" mb="2">
-            {post.subtitle || snippet(post.content)}
-          </Text>
-          <Text fontSize={[2, 3]} fontWeight="2" mb="3">
-            @{post.author.username} - {moment(post.createdAt).fromNow()}
-          </Text>
+
+            <Text fontSize={[2, 3]} fontWeight="2" mb="3">
+              @{post.author.username} -{' '}
+              <span style={{ fontStyle: 'italic' }}>
+                {moment(post.createdAt).fromNow()}
+              </span>
+            </Text>
+          </Box>
+          {post.imgurl && (
+            <LinkToPost post={post}>
+              <Box
+                width={['100%', null, 6]}
+                height={['100%', null, '6']}
+                mb={[2, 0]}
+              >
+                <Image src={post.imgurl} alt="" />
+              </Box>
+            </LinkToPost>
+          )}
         </Box>
-        {post.imgurl && (
-          <LinkToPost post={post}>
-            <Box
-              width={['100%', null, 6]}
-              height={['100%', null, '6']}
-              mb={[2, 0]}
-            >
-              <Image src={post.imgurl} alt="" />
-            </Box>
-          </LinkToPost>
-        )}
-      </Box>
-    ))
+      );
+    })
   ) : (
     <p>This user has no posts.</p>
   );
 };
 
-const LinkToPost = ({ post, children, ...props }) => (
+const LinkToPost = ({ post, children }) => (
   <Link
     href={{
       pathname: `/post`,
       query: { id: post.id }
     }}
     as={`/post/${slug(post.title).toLowerCase()}`}
-    {...props}
   >
     <a>{children}</a>
   </Link>

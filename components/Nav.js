@@ -77,7 +77,7 @@ const Nav = () => (
                 <>
                   <li>
                     <Link href="/profile">
-                      <a>Profile</a>
+                      <a style={{ fontStyle: 'italic' }}>@{data.me.username}</a>
                     </Link>
                   </li>
                   <Logout>
@@ -93,11 +93,11 @@ const Nav = () => (
                     )}
                   </Logout>
                   <li>
-                    <Button p="2" width="auto">
-                      <Link href="/publish">
+                    <Link href="/publish">
+                      <Button p="2" width="auto">
                         <a>New Post</a>
-                      </Link>
-                    </Button>
+                      </Button>
+                    </Link>
                   </li>
                 </>
               )}
@@ -109,11 +109,11 @@ const Nav = () => (
                     </Link>
                   </li>
                   <li>
-                    <Button p="2" width="auto">
-                      <Link href="/login">
+                    <Link href="/login">
+                      <Button p="2" width="auto">
                         <a>Login</a>
-                      </Link>
-                    </Button>
+                      </Button>
+                    </Link>
                   </li>
                 </>
               )}

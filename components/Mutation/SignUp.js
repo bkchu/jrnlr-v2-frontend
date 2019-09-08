@@ -73,7 +73,13 @@ export const SignUp = () => {
   };
 
   return (
-    <Box width={['100%', null, 1 / 2]} mx="auto" mt="2" mb="3" textAlign="right">
+    <Box
+      width={['100%', null, 8 / 12]}
+      mx="auto"
+      mt="2"
+      mb="3"
+      textAlign="right"
+    >
       <ErrorMessage error={error}></ErrorMessage>
       <Form disabled={loading} onSubmit={onSubmit}>
         <Input

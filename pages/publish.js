@@ -1,32 +1,17 @@
-import { Box, Button, Form, GET_ALL_POSTS_QUERY, Input } from '../components';
+import {
+  Box,
+  Button,
+  Form,
+  GET_ALL_POSTS_QUERY,
+  Input,
+  Textarea
+} from '../components';
 
 import ErrorMessage from '../components/ErrorMessage';
+import { PUBLISH_POST_MUTATION } from '../components/Mutation/Publish';
 import Router from 'next/router';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { useState } from 'react';
-
-export const PUBLISH_POST_MUTATION = gql`
-  mutation PUBLISH_POST_MUTATION(
-    $title: String!
-    $subtitle: String
-    $content: String!
-    $imgurl: String
-  ) {
-    publishPost(
-      title: $title
-      subtitle: $subtitle
-      content: $content
-      imgurl: $imgurl
-    ) {
-      id
-      title
-      subtitle
-      content
-      imgurl
-    }
-  }
-`;
 
 export default function Publish() {
   const [publishPost, { loading, error, data }] = useMutation(
@@ -69,7 +54,7 @@ export default function Publish() {
   };
 
   return (
-    <Box width={['100%', null, 1 / 2]} mx="auto" textAlign="right">
+    <Box width={['100%', null, 8 / 12]} mx="auto" textAlign="right" my="3">
       <ErrorMessage error={error}></ErrorMessage>
       <Form disabled={loading} onSubmit={onSubmit}>
         <Input
@@ -82,20 +67,21 @@ export default function Publish() {
         <Input
           name="subtitle"
           placeholder="Subtitle"
-          value={inputs.lastname}
+          value={inputs.subtitle}
           onChange={onChange}
         />
         <Input
           name="imgurl"
           placeholder="Image URL"
-          value={inputs.username}
+          value={inputs.imgurl}
           onChange={onChange}
         />
-        <Input
+        <Textarea
           name="content"
           placeholder="Write your feels..."
           value={inputs.content}
           onChange={onChange}
+          height="8"
           required
         />
         <Box display="flex" justifyContent="flex-end" pt="4">

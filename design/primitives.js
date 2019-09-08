@@ -4,7 +4,8 @@ import {
   flexbox,
   layout,
   space,
-  typography
+  typography,
+  position
 } from 'styled-system';
 
 import { css } from '@styled-system/css';
@@ -18,7 +19,8 @@ export const StyledBox = styled.div(
   color,
   layout,
   flexbox,
-  border
+  border,
+  position
 );
 
 export const Text = styled.p`
@@ -55,6 +57,25 @@ export const StyledInput = styled.input`
   ${space}
 `;
 
+export const StyledTextarea = styled.textarea`
+  ${css({
+    padding: 3,
+    width: ['100%'],
+    border: 1,
+    borderColor: 'grays.1',
+    fontFamily: 'code',
+    fontSize: [1, 2]
+  })}
+
+  resize: none;
+  outline: 0;
+  border-radius: 3px;
+
+  ${typography}
+  ${layout}
+  ${space}
+`;
+
 export const StyledForm = styled.form`
   label {
     ${css({
@@ -86,43 +107,38 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledButton = styled.button`
-  ${css({
-    padding: 3,
-    width: ['100%'],
-    fontSize: [1, 2],
-    border: 1,
-    // borderColor: 'grays.1',
-    // backgroundColor: 'white'
-    borderColor: 'green',
-    backgroundColor: 'green',
-    letterSpacing: 'tracked',
-    fontWeight: '5',
-    boxShadow: `0 4px 14px 0 rgba(46, 229, 157, 0.4)`
-  })}
+  ${props =>
+    css({
+      padding: 3,
+      fontSize: [1, 2],
+      border: 1,
+      borderColor: props.secondary ? 'white' : 'green',
+      backgroundColor: props.secondary ? 'white' : 'green',
+      letterSpacing: 'tracked',
+      fontWeight: '5',
+      boxShadow: `0 4px 14px 0 rgba(46, 229, 157, 0.4)`
+    })}
 
-text-transform: uppercase;
+  text-transform: uppercase;
 
-&:focus, &:hover {
-  ${css({
-    backgroundColor: 'lightgreen',
-    borderColor: 'lightgreen',
-    boxShadow: `0 6px 20px rgba(46, 229, 157, 0.2)`,
-    color: 'grays.1'
-  })}
-  }
-
-  &[secondary] {
-
+  &:focus, &:hover {
+    ${props =>
+      css({
+        backgroundColor: props.secondary ? 'green' : 'lightgreen',
+        borderColor: props.secondary ? 'green' : 'lightgreen',
+        boxShadow: `0 6px 20px rgba(46, 229, 157, 0.2)`,
+        color: 'grays.1'
+      })}
   }
 
   outline: 0;
   border-radius: 3px;
   transition: all 200ms;
   cursor: pointer;
-  
-  
 
   ${typography}
   ${space}
   ${layout}
+  ${color}
+  ${position}
 `;
