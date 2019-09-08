@@ -7,7 +7,7 @@ import { POST_FRAGMENT } from '../Fragment/Post';
 
 export const GET_ALL_POSTS_QUERY = gql`
   query GET_ALL_POSTS_QUERY {
-    allPosts {
+    posts(orderBy: createdAt_DESC) {
       ...POST_FRAGMENT
     }
   }
@@ -17,9 +17,7 @@ export const GET_ALL_POSTS_QUERY = gql`
 export const AllPosts = () => {
   const { loading, error, data } = useQuery(GET_ALL_POSTS_QUERY);
   if (loading) return <Loader />;
-  if (error) {
-    return <ErrorMessage error={error}></ErrorMessage>;
-  }
+  if (error) return <ErrorMessage error={error}></ErrorMessage>;
 
-  return <Posts posts={data.allPosts} />;
+  return <Posts posts={data.posts} />;
 };

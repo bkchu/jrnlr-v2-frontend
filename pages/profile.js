@@ -7,7 +7,7 @@ import { POST_FRAGMENT } from '../components/Fragment/Post';
 
 const POSTS_QUERY = gql`
   query POSTS_QUERY {
-    posts {
+    posts(orderBy: createdAt_DESC, isProfile: true) {
       ...POST_FRAGMENT
     }
   }
