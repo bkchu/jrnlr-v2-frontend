@@ -379,7 +379,8 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 2rem;
     line-height: 2;
     ${css({
-      fontFamily: 'sans'
+      fontFamily: 'sans',
+      backgroundColor: 'white',
     })}
   }
 

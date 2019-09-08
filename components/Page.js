@@ -8,9 +8,13 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../design';
 
 class Page extends Component {
+  state = {
+    theme: theme.light
+  }
+  
   render() {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={this.state.theme}>
         <>
           <GlobalStyle />
           <Meta />

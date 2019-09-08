@@ -64,7 +64,7 @@ const Posts = ({ posts }) => {
               {post.subtitle || snippet(post.content)}
             </Text>
 
-            <Text fontSize={[2, 3]} fontWeight="2" mb="3">
+            <Text color="grays.1" fontSize={[2, 3]} fontWeight="2" mb="3">
               @{post.author.username} -{' '}
               <span style={{ fontStyle: 'italic' }}>
                 {moment(post.createdAt).fromNow()}
