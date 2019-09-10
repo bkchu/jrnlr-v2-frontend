@@ -43,7 +43,13 @@ function Post() {
       <Text color="grays.1" fontSize={[3, 4]} fontWeight="2" mb="2">
         {post.subtitle}
       </Text>
-      <Text fontSize={[2, 3]} letterSpacing="tracked" fontWeight="2" mb="3">
+      <Text
+        color="grays.1"
+        fontSize={[2, 3]}
+        letterSpacing="tracked"
+        fontWeight="2"
+        mb="3"
+      >
         @{post.author.username} -{' '}
         <span style={{ fontStyle: 'italic' }}>
           {moment(post.createdAt).fromNow()}
@@ -57,7 +63,9 @@ function Post() {
               query: { id: post.id }
             }}
           >
-            <Button width={[1 / 2]}>Edit</Button>
+            <Button small secondary>
+              Edit
+            </Button>
           </Link>
         </Box>
       )}

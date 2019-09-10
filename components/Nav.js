@@ -1,15 +1,15 @@
+import css from '@styled-system/css';
+import Link from 'next/link';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import React from 'react';
+import styled from 'styled-components';
+import { Text } from '../design';
 import { Box } from './Box';
 import { Button } from './Button';
-import Link from 'next/link';
 import { Loader } from './Loader';
 import { Logout } from './Mutation/Logout';
 import { Me } from './Query/Me';
-import NProgress from 'nprogress';
-import React from 'react';
-import Router from 'next/router';
-import { Text } from '../design';
-import css from '@styled-system/css';
-import styled from 'styled-components';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -30,8 +30,8 @@ const StyledList = styled.ul`
   width: auto;
 
   ${css({
-    fontSize: [1, 2],
-    color: 'grays.2'
+    fontSize: [1, 2]
+    // color: 'grays.2'
   })}
 
   li {
@@ -45,7 +45,7 @@ const StyledList = styled.ul`
   }
 `;
 
-const Nav = () => (
+const Nav = ({ toggle }) => (
   <Me>
     {({ data, loading }) => {
       return (
@@ -95,9 +95,14 @@ const Nav = () => (
                   <li>
                     <Link href="/publish">
                       <Button p="2" width="auto">
-                        <a>New Post</a>
+                        <a>Post</a>
                       </Button>
                     </Link>
+                  </li>
+                  <li>
+                    <Button p="2" secondary width="auto" onClick={toggle}>
+                      Theme
+                    </Button>
                   </li>
                 </>
               )}

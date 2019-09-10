@@ -71,7 +71,7 @@ export const theme = {
     colors: {
       grays: ['#eeeeee', '#393e46', '#232931'],
       green: 'rgba(78, 204, 163, 1)',
-      lightgreen: 'rgba(145, 237, 207, 1)',
+      lightgreen: 'rgba(102, 227, 186, 1)',
       white: '#fff',
       transparent: 'transparent',
       blacks: [
@@ -176,7 +176,7 @@ export const theme = {
     colors: {
       grays: ['#232931', '#ccc', '#eee'],
       green: 'rgba(78, 204, 163, 1)',
-      lightgreen: 'rgba(145, 237, 207, 1)',
+      lightgreen: 'rgba(102, 227, 186, 1)',
       white: '#232931',
       transparent: 'transparent',
       blacks: [

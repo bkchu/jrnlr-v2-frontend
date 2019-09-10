@@ -1,15 +1,14 @@
+import { css } from '@styled-system/css';
+import styled from 'styled-components';
 import {
   border,
   color,
   flexbox,
   layout,
+  position,
   space,
-  typography,
-  position
+  typography
 } from 'styled-system';
-
-import { css } from '@styled-system/css';
-import styled from 'styled-components';
 
 export const StyledBox = styled.div(
   {
@@ -107,27 +106,51 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledButton = styled.button`
+  text-transform: uppercase;
+  min-width: 10rem;
+  ${css({
+    padding: 3,
+    fontSize: [1, 2],
+    border: 1,
+    borderColor: 'green',
+    backgroundColor: 'green',
+    letterSpacing: 'tracked',
+    fontWeight: '5',
+    boxShadow: `0 4px 14px 0 rgba(46, 229, 157, 0.4)`,
+    color: 'grays.0'
+  })}
+
   ${props =>
+    props.secondary &&
     css({
-      padding: 3,
-      fontSize: [1, 2],
-      border: 1,
-      borderColor: props.secondary ? 'white' : 'green',
-      backgroundColor: props.secondary ? 'white' : 'green',
-      letterSpacing: 'tracked',
-      fontWeight: '5',
-      boxShadow: `0 4px 14px 0 rgba(46, 229, 157, 0.4)`
+      borderColor: 'white',
+      backgroundColor: 'transparent',
+      borderColor: 'green',
+      color: 'green',
+      boxShadow: 'none'
     })}
 
-  text-transform: uppercase;
+  ${props =>
+    props.small &&
+    css({
+      padding: 1
+    })}
 
-  &:focus, &:hover {
+
+  &:active, &:hover {
+    ${css({
+      backgroundColor: 'lightgreen',
+      borderColor: 'lightgreen',
+      boxShadow: `0 4px 14px rgba(46, 229, 157, 0.2)`,
+      color: 'grays.0'
+    })}
+
     ${props =>
+      props.secondary &&
       css({
-        backgroundColor: props.secondary ? 'green' : 'lightgreen',
-        borderColor: props.secondary ? 'green' : 'lightgreen',
-        boxShadow: `0 6px 20px rgba(46, 229, 157, 0.2)`,
-        color: 'grays.1'
+        backgroundColor: 'green',
+        borderColor: 'green',
+        color: 'grays.0'
       })}
   }
 

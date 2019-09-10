@@ -38,7 +38,8 @@ const Posts = ({ posts }) => {
               }}
             >
               <Button
-                secondary={true}
+                secondary
+                small
                 width="auto"
                 position="absolute"
                 right="1rem"
