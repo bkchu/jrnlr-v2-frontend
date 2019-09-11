@@ -45,7 +45,7 @@ const StyledList = styled.ul`
   }
 `;
 
-const Nav = ({ toggle }) => (
+const Nav = ({ toggleTheme }) => (
   <Me>
     {({ data, loading }) => {
       return (
@@ -88,21 +88,23 @@ const Nav = ({ toggle }) => (
                           Router.push('/login');
                         }}
                       >
-                        <a>Log Out</a>
+                        <Button secondary p="2" width="auto">
+                          <a>Logout</a>
+                        </Button>
                       </li>
                     )}
                   </Logout>
+                  <li>
+                    <Button p="2" secondary width="auto" onClick={toggleTheme}>
+                      Theme
+                    </Button>
+                  </li>
                   <li>
                     <Link href="/publish">
                       <Button p="2" width="auto">
                         <a>Post</a>
                       </Button>
                     </Link>
-                  </li>
-                  <li>
-                    <Button p="2" secondary width="auto" onClick={toggle}>
-                      Theme
-                    </Button>
                   </li>
                 </>
               )}
