@@ -9,6 +9,7 @@ import { Button } from './Button';
 import ErrorMessage from './ErrorMessage';
 import { Loader } from './Loader';
 import { ME_QUERY } from './Query/Me';
+import Head from 'next/head';
 
 const Posts = ({ posts }) => {
   const { data, error, loading } = useQuery(ME_QUERY);
@@ -38,7 +39,6 @@ const Posts = ({ posts }) => {
               }}
             >
               <Button
-                secondary
                 small
                 width="auto"
                 position="absolute"
@@ -51,22 +51,16 @@ const Posts = ({ posts }) => {
           )}
           <Box mr={[0, null, 3]} flex={[null, null, 1]}>
             <LinkToPost post={post}>
-              <Text
-                color="grays.1"
-                fontSize={[5, 6]}
-                fontWeight="6"
-                lineHeight="title"
-                mb="2"
-              >
+              <Text fontSize={[5, 6]} fontWeight="6" lineHeight="title" mb="2">
                 {post.title}
               </Text>
             </LinkToPost>
-            <Text color="grays.1" fontSize={[3, 4]} fontWeight="2" mb="2">
+            <Text fontSize={[3, 4]} fontWeight="2" mb="2">
               {post.subtitle || snippet(post.content)}
             </Text>
 
-            <Text color="grays.1" fontSize={[2, 3]} fontWeight="2" mb="3">
-              @{post.author.username} -{' '}
+            <Text fontSize={[2, 3]} fontWeight="2" mb="3">
+              {post.author.name} -{' '}
               <span style={{ fontStyle: 'italic' }}>
                 {moment(post.createdAt).fromNow()}
               </span>
