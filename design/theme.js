@@ -69,7 +69,7 @@ export const theme = {
       '192rem'
     ],
     colors: {
-      grays: ['#eeeeee', '#393e46', '#232931'],
+      grays: ['#eeeeee', '#232931'],
       green: 'rgba(78, 204, 163, 1)',
       lightgreen: 'rgba(102, 227, 186, 1)',
       white: '#fff',
@@ -174,7 +174,7 @@ export const theme = {
       '192rem'
     ],
     colors: {
-      grays: ['#232931', '#ccc', '#eee'],
+      grays: ['#eeeeee', '#232931'].reverse(),
       green: 'rgba(78, 204, 163, 1)',
       lightgreen: 'rgba(102, 227, 186, 1)',
       white: '#232931',
