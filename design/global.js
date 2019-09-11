@@ -2,9 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 import css from '@styled-system/css';
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
-  @import url('https://rsms.me/inter/inter.css');
-
   /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
   /* Document
@@ -376,18 +373,18 @@ export const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-size: 2rem;
     line-height: 2;
     ${css({
       fontFamily: 'sans',
       backgroundColor: 'white',
+      fontSize: '3'
     })}
   }
 
   a {
     text-decoration: none;
     ${css({
-      color: 'grays.2'
+      color: 'grays.1'
     })}
   }
 
