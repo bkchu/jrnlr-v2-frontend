@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
-
-import { Box } from './Box';
-import { GlobalStyle } from '../design/global';
-import Meta from './Meta';
-import Nav from './Nav';
+import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../design';
-import { Button } from './Button';
+import { GlobalStyle } from '../design/global';
+import { Box } from './Box';
+import Meta from './Meta';
+import Nav from './Nav';
 
 const Page = props => {
-  const [theTheme, setTheTheme] = useState('light');
-  const toggle = () => setTheTheme(theTheme === 'light' ? 'dark' : 'light');
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    setDarkMode(localStorage.getItem('darkMode') === 'true');
+  }, [darkMode]);
+
+  const toggleTheme = () => {
+    localStorage.removeItem('darkMode');
+    localStorage.setItem('darkMode', !darkMode);
+    setDarkMode(() => !darkMode);
+  };
+
   return (
-    <ThemeProvider theme={theme[theTheme]}>
+    <ThemeProvider theme={theme[darkMode ? 'dark' : 'light']}>
       <>
         <GlobalStyle />
         <Meta />
-        <Nav toggle={toggle}/>
+        <Nav toggleTheme={toggleTheme} />
         <Box width={['auto', 8 / 12]} margin={[2, '0 auto']}>
           {props.children}
         </Box>
