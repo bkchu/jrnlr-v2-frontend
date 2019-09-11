@@ -25,7 +25,11 @@ export const StyledBox = styled.div(
 export const Text = styled.p`
   text-transform: ${props => props.textTransform};
   margin: 0;
-  ${css({ lineHeight: 'copy', fontFamily: 'sans' })}
+  ${css({
+    lineHeight: 'copy',
+    fontFamily: 'sans',
+    color: 'grays.1'
+  })}
   ${color}
   ${typography}
   ${space}
@@ -70,6 +74,7 @@ export const StyledTextarea = styled.textarea`
   outline: 0;
   border-radius: 3px;
 
+  ${color}
   ${typography}
   ${layout}
   ${space}
@@ -79,12 +84,19 @@ export const StyledForm = styled.form`
   label {
     ${css({
       fontSize: [1, 2],
-      fontWeight: 6
+      fontWeight: 6,
+      color: 'grays.1'
     })}
   }
 
-  input {
+  input,
+  textarea {
     margin-bottom: 2rem;
+
+    ${css({
+      color: 'grays.1',
+      backgroundColor: 'white'
+    })}
   }
 
   fieldset[disabled] {
@@ -94,7 +106,8 @@ export const StyledForm = styled.form`
       })}
     }
 
-    input {
+    input,
+    textarea {
       ${css({
         borderColor: 'blacks.5',
         color: 'blacks.7'
@@ -103,6 +116,7 @@ export const StyledForm = styled.form`
   }
 
   ${space}
+  ${color}
 `;
 
 export const StyledButton = styled.button`
@@ -125,7 +139,7 @@ export const StyledButton = styled.button`
     css({
       borderColor: 'white',
       backgroundColor: 'transparent',
-      borderColor: 'green',
+      borderColor: 'transparent',
       color: 'green',
       boxShadow: 'none'
     })}
