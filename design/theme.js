@@ -72,6 +72,8 @@ export const theme = {
       grays: ['#eeeeee', '#232931'],
       green: 'rgba(78, 204, 163, 1)',
       lightgreen: 'rgba(102, 227, 186, 1)',
+      red: '#e3002d',
+      lightred: '#ed647f',
       white: '#fff',
       transparent: 'transparent',
       blacks: [
@@ -177,6 +179,8 @@ export const theme = {
       grays: ['#eeeeee', '#232931'].reverse(),
       green: 'rgba(78, 204, 163, 1)',
       lightgreen: 'rgba(102, 227, 186, 1)',
+      red: '#e3002d',
+      lightred: '#ed647f',
       white: '#232931',
       transparent: 'transparent',
       blacks: [

@@ -1,9 +1,9 @@
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import ErrorMessage from '../ErrorMessage';
+import { POST_FRAGMENT } from '../Fragment/Post';
 import { Loader } from '../Loader';
 import { Posts } from '../Posts';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-import { POST_FRAGMENT } from '../Fragment/Post';
 
 export const GET_ALL_POSTS_QUERY = gql`
   query GET_ALL_POSTS_QUERY {

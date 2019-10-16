@@ -134,16 +134,27 @@ export const StyledButton = styled.button`
     color: 'grays.0'
   })}
 
+  /* secondary styles */
   ${props =>
     props.secondary &&
     css({
-      borderColor: 'white',
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       color: 'green',
       boxShadow: 'none'
     })}
 
+  /* secondary styles */
+  ${props =>
+    props.error &&
+    css({
+      backgroundColor: 'red',
+      borderColor: 'red',
+      color: 'grays.0',
+      boxShadow: '0 4px 14px 0 rgba(229, 46, 46, 0.4)'
+    })}
+
+  /* small styles */
   ${props =>
     props.small &&
     css({
@@ -165,6 +176,15 @@ export const StyledButton = styled.button`
         backgroundColor: 'green',
         borderColor: 'green',
         color: 'grays.0'
+      })}
+    
+    ${props =>
+      props.error &&
+      css({
+        backgroundColor: 'lightred',
+        borderColor: 'lightred',
+        color: 'grays.0',
+        boxShadow: '0 4px 14px 0 rgba(229, 46, 46, 0.2)'
       })}
   }
 

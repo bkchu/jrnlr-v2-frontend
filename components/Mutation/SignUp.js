@@ -1,12 +1,11 @@
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import Router from 'next/router';
+import { useState } from 'react';
 import { Box, Button, Form, Input } from '../../components';
-
+import { sentenceCase } from '../../lib/utils/sentenceCase';
 import ErrorMessage from '../ErrorMessage';
 import { ME_QUERY } from '../Query/Me';
-import Router from 'next/router';
-import gql from 'graphql-tag';
-import { sentenceCase } from '../../lib/utils/sentenceCase';
-import { useMutation } from '@apollo/react-hooks';
-import { useState } from 'react';
 
 export const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(

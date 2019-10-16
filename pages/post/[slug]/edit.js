@@ -10,8 +10,10 @@ import {
   Textarea
 } from '../../../components';
 import ErrorMessage from '../../../components/ErrorMessage';
+import { DELETE_POST_MUTATION } from '../../../components/Mutation/DeletePost';
 import { EDIT_POST_MUTATION } from '../../../components/Mutation/EditPost';
 import { POST_QUERY } from '../../../components/Query/Post';
+import { Image } from '../../../design';
 
 export default function Edit() {
   const router = useRouter();
@@ -37,7 +39,7 @@ export default function Edit() {
       setInputs({
         title: dataPost.post.title || '',
         subtitle: dataPost.post.subtitle || '',
-        imgurl: dataPost.post.imgurl || '',
+        imgurl: (dataPost.post.imgurl && dataPost.post.imgurl.regular) || '',
         content: dataPost.post.content || ''
       });
     }
@@ -47,6 +49,13 @@ export default function Edit() {
     editPost,
     { loading: loadingEditPost, error: errorEditPost, dataEditPost }
   ] = useMutation(EDIT_POST_MUTATION, {
+    refetchQueries: [{ query: GET_ALL_POSTS_QUERY }]
+  });
+
+  const [
+    deletePost,
+    { loading: loadingDeletePost, error: errorDeletePost }
+  ] = useMutation(DELETE_POST_MUTATION, {
     refetchQueries: [{ query: GET_ALL_POSTS_QUERY }]
   });
 
@@ -64,6 +73,12 @@ export default function Edit() {
       imgurl: '',
       content: ''
     });
+  };
+
+  const onDelete = () => {
+    deletePost({ variables: { id: router.query.id } });
+
+    router.push('/profile');
   };
 
   const onSubmit = async e => {
@@ -85,8 +100,13 @@ export default function Edit() {
 
   return (
     <Box width={['100%', null, 8 / 12]} mx="auto" textAlign="right" my="3">
-      <ErrorMessage error={errorPost || errorEditPost}></ErrorMessage>
-      <Form disabled={loadingPost || loadingEditPost} onSubmit={onSubmit}>
+      <ErrorMessage
+        error={errorPost || errorEditPost || errorDeletePost}
+      ></ErrorMessage>
+      <Form
+        disabled={loadingPost || loadingEditPost || loadingDeletePost}
+        onSubmit={onSubmit}
+      >
         <Input
           name="title"
           placeholder="Title"
@@ -106,6 +126,7 @@ export default function Edit() {
           value={inputs.imgurl}
           onChange={onChange}
         />
+        {!!inputs.imgurl && <Image src={inputs.imgurl}></Image>}
         <Textarea
           name="content"
           placeholder="Write your feels..."
@@ -114,9 +135,22 @@ export default function Edit() {
           height="8"
           required
         />
-        <Box display="flex" justifyContent="flex-end" pt="4">
-          <Button width={['100%', null, 1 / 2]}>
+        <Box
+          display="flex"
+          flexDirection="row-reverse"
+          justifyContent="space-between"
+          pt="4"
+        >
+          <Button type="submit" width={['100%', null, '49%']}>
             {loadingEditPost ? 'Publishing Edits...' : 'Publish Edits'}
+          </Button>
+          <Button
+            type="button"
+            error
+            width={['100%', null, '49%']}
+            onClick={onDelete}
+          >
+            {loadingDeletePost ? 'Deleting Post...' : 'Delete Post'}
           </Button>
         </Box>
       </Form>

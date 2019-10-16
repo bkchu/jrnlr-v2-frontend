@@ -1,3 +1,6 @@
+import { useMutation } from '@apollo/react-hooks';
+import Router from 'next/router';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -6,12 +9,9 @@ import {
   Input,
   Textarea
 } from '../components';
-
 import ErrorMessage from '../components/ErrorMessage';
 import { PUBLISH_POST_MUTATION } from '../components/Mutation/Publish';
-import Router from 'next/router';
-import { useMutation } from '@apollo/react-hooks';
-import { useState } from 'react';
+import { Image } from '../design';
 
 export default function Publish() {
   const [publishPost, { loading, error, data }] = useMutation(
@@ -76,6 +76,7 @@ export default function Publish() {
           value={inputs.imgurl}
           onChange={onChange}
         />
+        {!!inputs.imgurl && <Image src={inputs.imgurl} alt=""></Image>}
         <Textarea
           name="content"
           placeholder="Write your feels..."

@@ -95,7 +95,7 @@ const Nav = ({ toggleTheme }) => (
                     )}
                   </Logout>
                   <li>
-                    <Button p="2" secondary width="auto" onClick={toggleTheme}>
+                    <Button secondary p="2" width="auto" onClick={toggleTheme}>
                       Theme
                     </Button>
                   </li>

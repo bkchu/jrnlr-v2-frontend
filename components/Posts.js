@@ -9,7 +9,6 @@ import { Button } from './Button';
 import ErrorMessage from './ErrorMessage';
 import { Loader } from './Loader';
 import { ME_QUERY } from './Query/Me';
-import Head from 'next/head';
 
 const Posts = ({ posts }) => {
   const { data, error, loading } = useQuery(ME_QUERY);
@@ -66,14 +65,14 @@ const Posts = ({ posts }) => {
               </span>
             </Text>
           </Box>
-          {post.imgurl && (
+          {post.imgurl && post.imgurl.thumbnail && (
             <LinkToPost post={post}>
               <Box
                 width={['100%', null, 6]}
                 height={['100%', null, '6']}
                 mb={[2, 0]}
               >
-                <Image src={post.imgurl} alt="" />
+                <Image src={post.imgurl.thumbnail} alt="" />
               </Box>
             </LinkToPost>
           )}

@@ -10,7 +10,10 @@ export const POST_FRAGMENT = gql`
       name
       username
     }
-    imgurl
+    imgurl {
+      thumbnail
+      regular
+    }
     content
     createdAt
   }

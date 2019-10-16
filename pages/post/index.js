@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import moment from 'moment';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import slug from 'slug';
@@ -9,7 +10,6 @@ import { Loader } from '../../components/Loader';
 import { ME_QUERY } from '../../components/Query/Me';
 import { POST_QUERY } from '../../components/Query/Post';
 import { Image, Text } from '../../design';
-import Head from 'next/head';
 
 function Post() {
   const router = useRouter();
@@ -37,7 +37,9 @@ function Post() {
         </title>
       </Head>
       <Box key={post.id} maxWidth="75rem" mt={[2, 3]} mb="7" mx="auto">
-        {post.imgurl && <Image src={post.imgurl} alt="" mb="1" />}
+        {post.imgurl && post.imgurl.regular && (
+          <Image src={post.imgurl.regular} alt="" mb="1" />
+        )}
         <Text fontSize={[5, 6]} fontWeight="6" lineHeight="title" mb="3">
           {post.title}
         </Text>
